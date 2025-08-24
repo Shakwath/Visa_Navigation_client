@@ -15,8 +15,7 @@ const {user, logOut } = use(AuthContext);
   };
 
   return (
-    <div className="bg-base-100 shadow-sm">
-
+    <div className="bg-base-100 shadow-sm px-6">
       <div className="navbar py-3 px-4 md:px-8 flex items-center justify-between">
         {/* Left: Logo */}
         <div className="flex items-center gap-2">
@@ -37,9 +36,9 @@ const {user, logOut } = use(AuthContext);
         <div className="hidden lg:flex justify-center">
           <ul className="menu menu-horizontal px-1 font-medium">
           <li><Link to="/">Home</Link></li>
-          <li><Link to="/all-visas">All Visas</Link></li>
+          <li><Link to="/allvisa">All Visas</Link></li>
           <li><Link to="/addvisa">My Added Visa</Link></li>
-          <li><Link to="/my-visa-applications">My Visa Applications</Link></li>
+          <li><Link to="/myvisapplication">My Visa Applications</Link></li>
             {user && <li><NavLink to="/updateprofile">My Profile</NavLink></li>}
           </ul>
         </div>
@@ -90,11 +89,10 @@ const {user, logOut } = use(AuthContext);
           className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52 font-medium"
         >
           <li><Link to="/">Home</Link></li>
-          <li><Link to="/all-visas">All Visas</Link></li>
+          <li><Link to="/allvisa">All Visas</Link></li>
           <li><Link to="/addvisa">My Added Visa</Link></li>
-          <li><Link to="/my-visa-applications">My Visa Applications</Link></li>
-          <li><Link to="/login">Login</Link></li>
-              {user && <li><NavLink to="/my-profile">My Profile</NavLink></li>}
+          <li><Link to="/myvisapplication">My Visa Applications</Link></li>
+              {user && <li><NavLink to="/updateprofile">My Profile</NavLink></li>}
               {!user && <li><NavLink to="/login">Login</NavLink></li>}
             </ul>
           </div>

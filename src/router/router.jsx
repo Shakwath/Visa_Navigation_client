@@ -8,6 +8,8 @@ import MyProfile from "../Components/Pages/MyProfile";
 import ForgetPassword from "../Components/ForgetPassword";
 import ErrorPage from "../Components/Pages/errorpage";
 import PrivateRoute from "../Components/Provider/PrivateRoute";
+import Allvisas from "../Components/Pages/Allvisas";
+import MyVisaapplications from "../Components/Pages/MyVisaapplications";
 
 export const router = createBrowserRouter ([
   {
@@ -22,6 +24,15 @@ export const router = createBrowserRouter ([
         path: "/addvisa",
         element: <PrivateRoute><AddVisa></AddVisa></PrivateRoute>,
       },
+      {
+        path: "/allvisa",
+        element: <PrivateRoute><Allvisas></Allvisas></PrivateRoute>,
+      },
+      {
+        path: "/myvisapplication",
+        element: <PrivateRoute><MyVisaapplications></MyVisaapplications></PrivateRoute>,
+      },
+
       {
         path: "/login",
         element: <Login></Login>,
