@@ -41,7 +41,7 @@ const AddVisa = () => {
     setVisaData(initialState);
     setTimeout(() => setMessage(""), 5000);
 
-    fetch('http://localhost:5000/visa' ,{
+    fetch('http://localhost:5000/allvisa' ,{
       method : 'POST',
       headers : {
         'content-type':'application/json'
@@ -51,6 +51,10 @@ const AddVisa = () => {
     .then(res => res.json())
     .then(data => {
       console.log(data);
+      if(data.insertedId)
+      {
+        alert('visa added successfully')
+      }
     })
     
   };
