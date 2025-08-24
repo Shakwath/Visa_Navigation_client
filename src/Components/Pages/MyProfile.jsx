@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Addvisa = () => {
+const MyProfile = () => {
   return (
     <div>
       
@@ -8,4 +8,4 @@ const Addvisa = () => {
   );
 };
 
-export default Addvisa;
+export default MyProfile;

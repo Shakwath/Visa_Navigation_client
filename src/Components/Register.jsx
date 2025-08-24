@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import Registeri from '../assets/signup.png';
 import { Link, useNavigate } from "react-router-dom";
-import { AuthContext } from "./Provider/AuthProvider";
+import { AuthContext } from "./Provider/Authprovider";
 
 const Register = () => {
   const { createUser, setUser, updateUser } = useContext(AuthContext);
