@@ -19,6 +19,7 @@ const AddVisa = () => {
   initialState.requiredDocuments = [];
   const [visaData, setVisaData] = useState(initialState);
   const [message, setMessage] = useState("");
+  
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     if (type === "checkbox") {
@@ -39,6 +40,19 @@ const AddVisa = () => {
     setMessage("Visa added successfully!");
     setVisaData(initialState);
     setTimeout(() => setMessage(""), 5000);
+
+    fetch('http://localhost:5000/visa' ,{
+      method : 'POST',
+      headers : {
+        'content-type':'application/json'
+      },
+      body:JSON.stringify(visaData)
+    })
+    .then(res => res.json())
+    .then(data => {
+      console.log(data);
+    })
+    
   };
 
   return (
