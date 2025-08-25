@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Swal from 'sweetalert2'
 
 const visaFieldConfig = [
   { name: "countryImage", label: "Country Image URL", type: "text", placeholder: "Enter image URL" },
@@ -53,7 +54,12 @@ const AddVisa = () => {
       console.log(data);
       if(data.insertedId)
       {
-        alert('visa added successfully')
+        Swal.fire({
+          title: 'sucess!',
+          text :'visa added successfully',
+          icon: 'success',
+          confirmButtonText : 'cool'
+        })
       }
     })
     

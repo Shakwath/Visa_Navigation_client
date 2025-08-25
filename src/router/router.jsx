@@ -27,7 +27,7 @@ export const router = createBrowserRouter ([
       {
         path: "/allvisa",
         element: <PrivateRoute><Allvisas></Allvisas></PrivateRoute>,
-       loader: ()=> fetch('http://localhost:5000/allvisa')
+        loader: ()=> fetch('http://localhost:5000/allvisa')
     },
       {
         path: "/myvisapplication",
