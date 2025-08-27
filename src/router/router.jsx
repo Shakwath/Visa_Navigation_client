@@ -10,6 +10,7 @@ import ErrorPage from "../Components/Pages/errorpage";
 import PrivateRoute from "../Components/Provider/PrivateRoute";
 import Allvisas from "../Components/Pages/Allvisas";
 import MyVisaapplications from "../Components/Pages/MyVisaapplications";
+import SeeDetails from "../Components/Pages/SeeDetails";
 
 export const router = createBrowserRouter ([
   {
@@ -29,8 +30,13 @@ export const router = createBrowserRouter ([
         element: <PrivateRoute><Allvisas></Allvisas></PrivateRoute>,
         loader: ()=> fetch('http://localhost:5000/allvisa')
     },
+    {
+        path: "/visadetails/:id",
+        element: <PrivateRoute><SeeDetails></SeeDetails></PrivateRoute>,
+        loader: ({params})=> fetch(`http://localhost:5000/visadetails/${params.id}`)
+    },
       {
-        path: "/myvisapplication",
+        path: "/myapplications",
         element: <PrivateRoute><MyVisaapplications></MyVisaapplications></PrivateRoute>,
       },
 
