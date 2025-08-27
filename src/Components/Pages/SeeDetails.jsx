@@ -24,7 +24,8 @@ const SeeDetails = () => {
     // send data to backend
     const res = await fetch("http://localhost:5000/applications", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: { 
+        "Content-Type": "application/json" },
       body: JSON.stringify(applicationData),
     });
 

@@ -6,6 +6,7 @@ import img3 from '../assets/Banner3.jpg';
 import Footer from './Footer';
 import FAQ from './FAQ';
 import FeaturesSection from './FeaturesSection';
+import LatestVisas from './Pages/LatestVisas';
 
 const Home = () => {
     return (
@@ -34,7 +35,10 @@ const Home = () => {
                 </div>
             </div>
             </div>
-
+             {/* Latest Section */}
+             <div>
+               <LatestVisas></LatestVisas>
+             </div>
             {/* Extra Section 01*/}
             <div >
             <FeaturesSection></FeaturesSection>

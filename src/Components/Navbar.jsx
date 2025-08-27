@@ -38,6 +38,7 @@ const {user, logOut } = use(AuthContext);
           <li><NavLink to="/">Home</NavLink></li>
           <li><NavLink to="/allvisa">All Visas</NavLink></li>
           <li><NavLink to="/addvisa">Add Visa</NavLink></li>
+          <li><NavLink to="/myaddedvisa">My added visas</NavLink></li>
           <li><NavLink to="/myvisapplication">My Visa Applications</NavLink></li>
             {user && <li><NavLink to="/updateprofile">My Profile</NavLink></li>}
           </ul>
@@ -91,6 +92,7 @@ const {user, logOut } = use(AuthContext);
           <li><NavLink to="/">Home</NavLink></li>
           <li><NavLink to="/allvisa">All Visas</NavLink></li>
           <li><NavLink to="/addvisa">Add Visa</NavLink></li>
+          <li><NavLink to="/myaddedvisa">My added visas</NavLink></li>
           <li><NavLink to="/myvisapplication">My Visa Applications</NavLink></li>
               {user && <li><NavLink to="/updateprofile">My Profile</NavLink></li>}
               {!user && <li><NavLink to="/login">Login</NavLink></li>}
