@@ -10,7 +10,6 @@ const SeeDetails = () => {
 
   const handleApply = async (e) => {
     e.preventDefault();
-
     const form = e.target;
     const applicationData = {
       visaId: visa._id,
@@ -20,6 +19,9 @@ const SeeDetails = () => {
       appliedDate: form.appliedDate.value,
       fee: visa.fee,
     };
+
+    console.log("Sending application:", applicationData);
+
 
     // send data to backend
     const res = await fetch("http://localhost:5000/applications", {

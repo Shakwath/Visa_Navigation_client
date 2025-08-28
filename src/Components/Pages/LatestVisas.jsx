@@ -1,6 +1,7 @@
 // LatestVisas.jsx
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Typewriter } from 'react-simple-typewriter';
 
 const LatestVisas = () => {
   const [visas, setVisas] = useState([]);
@@ -28,7 +29,18 @@ const LatestVisas = () => {
 
   return (
     <section className="my-10 px-4 md:px-8 lg:px-16">
-      <h2 className="text-3xl sm:text-4xl font-bold mb-8 text-center">Latest Visas</h2>
+        {/* Challenge  */}
+      <h2 className="text-3xl sm:text-4xl font-bold mb-8 text-center">
+        <Typewriter
+            words={['Latest Visas', 'Explore Top Countries', 'Apply Now!']}
+            loop={true}
+            cursor
+            cursorStyle="|"
+            typeSpeed={70}
+            deleteSpeed={50}
+            delaySpeed={2000}
+        />
+        </h2>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-6">
         {visas.map((visa) => (
@@ -63,7 +75,7 @@ const LatestVisas = () => {
 
       <div className="text-center mt-10">
         <button
-          onClick={() => navigate("/allvisas")}
+          onClick={() => navigate("/allvisa")}
           className="btn  btn-warning px-6 py-2 text-base sm:text-lg"
         >
           See All Visas
