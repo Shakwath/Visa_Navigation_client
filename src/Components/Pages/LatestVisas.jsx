@@ -10,7 +10,7 @@ const LatestVisas = () => {
   // Function to fetch visas from backend
   const fetchVisas = async () => {
     try {
-      const res = await fetch("http://localhost:5000/allvisa");
+      const res = await fetch("https://visa-navigation-server.vercel.app/allvisa");
       const data = await res.json();
       const sortedVisas = data
         .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
