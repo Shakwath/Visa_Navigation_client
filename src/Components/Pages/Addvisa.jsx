@@ -42,7 +42,7 @@ const AddVisa = () => {
     setVisaData(initialState);
     setTimeout(() => setMessage(""), 5000);
 
-    fetch('https://visa-navigation-server.vercel.app/allvisa' ,{
+    fetch('http://localhost:5000/allvisa' ,{
       method : 'POST',
       headers : {
         'content-type':'application/json'

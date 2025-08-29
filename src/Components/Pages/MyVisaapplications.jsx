@@ -7,7 +7,7 @@ const MyVisaApplications = () => {
 
   const fetchApplications = async () => {
     if (!user?.email) return;
-    const res = await fetch(`https://visa-navigation-server.vercel.app/applications?email=${user.email}`);
+    const res = await fetch(`http://localhost:5000/applications?email=${user.email}`);
     const data = await res.json();
     setApplications(data);
   };
@@ -20,7 +20,7 @@ const MyVisaApplications = () => {
     const confirm = window.confirm("Are you sure you want to cancel this application?");
     if (!confirm) return;
 
-    const res = await fetch(`https://visa-navigation-server.vercel.app/applications/${id}`,
+    const res = await fetch(`http://localhost:5000/applications/${id}`,
       { 
         method: "DELETE" 
       });
