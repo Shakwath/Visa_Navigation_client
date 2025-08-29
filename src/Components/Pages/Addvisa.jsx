@@ -1,5 +1,6 @@
-import { useState } from "react";
-import Swal from 'sweetalert2'
+import { useState, useContext } from "react";
+import Swal from "sweetalert2";
+import { AuthContext } from "../Provider/Authprovider"; // Make sure this path is correct
 
 const visaFieldConfig = [
   { name: "countryImage", label: "Country Image URL", type: "text", placeholder: "Enter image URL" },
@@ -15,12 +16,14 @@ const visaFieldConfig = [
 
 const documentOptions = ["Valid passport", "Visa application form", "Recent passport-sized photograph"];
 
-const AddVisa = () => {
+const Addvisa = () => {
+  const { user } = useContext(AuthContext); // get logged-in user
   const initialState = visaFieldConfig.reduce((acc, field) => ({ ...acc, [field.name]: "" }), {});
   initialState.requiredDocuments = [];
+
   const [visaData, setVisaData] = useState(initialState);
-  const [message, setMessage] = useState("");
-  
+  const [message] = useState("");
+
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     if (type === "checkbox") {
@@ -37,43 +40,46 @@ const AddVisa = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Visa Data Submitted:", visaData);
-    setMessage("Visa added successfully!");
-    setVisaData(initialState);
-    setTimeout(() => setMessage(""), 5000);
+    if (!user?.email) {
+      Swal.fire({
+        title: "Error!",
+        text: "You must be logged in to add a visa",
+        icon: "error",
+        confirmButtonText: "OK",
+      });
+      return;
+    }
 
-    fetch('http://localhost:5000/allvisa' ,{
-      method : 'POST',
-      headers : {
-        'content-type':'application/json'
-      },
-      body:JSON.stringify(visaData)
+    const finalVisa = { ...visaData, email: user.email }; // attach user's email
+
+    fetch("http://localhost:5000/allvisa", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(finalVisa),
     })
-    .then(res => res.json())
-    .then(data => {
-      console.log(data);
-      if(data.insertedId)
-      {
-        Swal.fire({
-          title: 'sucess!',
-          text :'visa added successfully',
-          icon: 'success',
-          confirmButtonText : 'cool'
-        })
-      }
-    })
-    
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.insertedId) {
+          Swal.fire({
+            title: "Success!",
+            text: "Visa added successfully",
+            icon: "success",
+            confirmButtonText: "Cool",
+          });
+          setVisaData(initialState); // reset form
+        }
+      })
+      .catch((err) => console.error(err));
   };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 p-4">
       <div className="w-full max-w-2xl bg-white rounded-3xl shadow-2xl p-8">
-        <h2 className="text-3xl font-bold text-center text-gray-800 mb-6">Add Visa</h2>
+        <h2 className="text-3xl font-bold text-center mb-6">Add Visa</h2>
         <form onSubmit={handleSubmit}>
           {visaFieldConfig.map((field) => (
             <div className="mb-5" key={field.name}>
               <label className="block text-sm font-medium text-gray-700 mb-2">{field.label}:</label>
-
               {field.type === "textarea" ? (
                 <textarea
                   name={field.name}
@@ -110,7 +116,6 @@ const AddVisa = () => {
                   required
                 />
               )}
-
               {field.name === "countryImage" && visaData.countryImage && (
                 <img
                   src={visaData.countryImage}
@@ -155,4 +160,5 @@ const AddVisa = () => {
     </div>
   );
 };
-export default AddVisa;
+
+export default Addvisa;

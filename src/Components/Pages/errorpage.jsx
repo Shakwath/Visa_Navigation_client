@@ -10,8 +10,6 @@ const ErrorPage = () => {
         className="w-72 md:w-96 mb-6"
       />
 
-      <h1 className="text-9xl font-extrabold text-primary">404</h1>
-      <p className="text-2xl md:text-3xl font-semibold mt-4">Oops! Page not found</p>
       <p className="mt-2 text-base-content/70">
         The page you’re looking for doesn’t exist or has been moved.
       </p>
@@ -20,7 +18,7 @@ const ErrorPage = () => {
         <Link to="/" className="btn btn-primary">
           Go Home
         </Link>
-        <Link to="/all-visas" className="btn btn-outline">
+        <Link to="/allvisas" className="btn btn-outline">
           Browse Visas
         </Link>
       </div>

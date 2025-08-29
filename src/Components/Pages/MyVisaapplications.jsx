@@ -53,8 +53,7 @@ const MyVisaApplications = () => {
               <p><strong>Email:</strong> {app.email}</p>
               <button
                 onClick={() => handleCancel(app._id)}
-                className="btn btn-error w-full mt-2"
-              >
+                className="btn btn-outline btn-error w-full mt-2">
                 Cancel
               </button>
             </div>

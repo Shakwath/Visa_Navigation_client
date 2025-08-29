@@ -12,21 +12,21 @@ const SeeDetails = () => {
     e.preventDefault();
     const form = e.target;
     const applicationData = {
-  Country_image: visa.countryImage,
-  countryName: visa.countryName,   
-  Visa_type: visa.visaType,
-  Processing_time: visa.processingTime,
-  Validity: visa.validity,         
-  Application_method: visa.applicationMethod,
-  visaId: visa._id,
-  email: user?.email,
-  firstName: form.firstName.value,
-  lastName: form.lastName.value,
-  appliedDate: form.appliedDate.value,
-  fee: visa.fee,
+    Country_image: visa.countryImage,
+    countryName: visa.countryName,   
+    Visa_type: visa.visaType,
+    Processing_time: visa.processingTime,
+    Validity: visa.validity,         
+    Application_method: visa.applicationMethod,
+    visaId: visa._id,
+    email: user?.email,
+    firstName: form.firstName.value,
+    lastName: form.lastName.value,
+    appliedDate: form.appliedDate.value,
+    fee: visa.fee,
 };
 
-    console.log("Sending application:", applicationData);
+    //console.log("Sending application:", applicationData);
 
 
     // send data to backend
@@ -71,8 +71,8 @@ const SeeDetails = () => {
               <input type="text" name="appliedDate" value={currentDate} readOnly className="input input-bordered w-full" />
               <input type="text" value={`$${visa.fee}`} readOnly className="input input-bordered w-full" />
               <div className="flex gap-2 justify-end">
-                <button type="button" onClick={() => setShowModal(false)} className="btn btn-ghost">Cancel</button>
-                <button type="submit" className="btn btn-success">Apply</button>
+                <button type="button" onClick={() => setShowModal(false)} className="btn btn-outline btn-warning">Cancel</button>
+                <button type="submit" className="btn btn-outline btn-success">Apply</button>
               </div>
             </form>
           </div>
