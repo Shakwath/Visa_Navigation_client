@@ -12,13 +12,19 @@ const SeeDetails = () => {
     e.preventDefault();
     const form = e.target;
     const applicationData = {
-      visaId: visa._id,
-      email: user?.email,
-      firstName: form.firstName.value,
-      lastName: form.lastName.value,
-      appliedDate: form.appliedDate.value,
-      fee: visa.fee,
-    };
+  Country_image: visa.countryImage,
+  countryName: visa.countryName,   
+  Visa_type: visa.visaType,
+  Processing_time: visa.processingTime,
+  Validity: visa.validity,         
+  Application_method: visa.applicationMethod,
+  visaId: visa._id,
+  email: user?.email,
+  firstName: form.firstName.value,
+  lastName: form.lastName.value,
+  appliedDate: form.appliedDate.value,
+  fee: visa.fee,
+};
 
     console.log("Sending application:", applicationData);
 
