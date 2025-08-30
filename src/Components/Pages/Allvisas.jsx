@@ -20,7 +20,7 @@ const Allvisas = () => {
       <h2 className="text-center text-3xl md:text-4xl text-yellow-600 font-bold mb-3">
   {selectedType === "All"
     ? `See All Added Visas: ${filteredVisas.length}`
-    : `See ${selectedType}: ${filteredVisas.length}`}
+    : `See ${selectedType} : ${filteredVisas.length}`}
 </h2>
 
 
