@@ -1,22 +1,40 @@
-import React, { use } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import loginicon from '../assets/loginicon.png';
 import userIcon from "../assets/user.png";
 import { AuthContext } from './Provider/Authprovider';
+import { FaSun, FaMoon } from 'react-icons/fa';
+import '../App.css';
 
 const Navbar = () => {
-const {user, logOut } = use(AuthContext);
-//console.log(user);
+  const { user, logOut } = useContext(AuthContext);
+
+  // Dark/Light mode state
+  const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
+
+  useEffect(() => {
+    // Apply theme to html element
+    if (theme === "dark") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+    localStorage.setItem("theme", theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme(theme === "dark" ? "light" : "dark");
+  };
 
   const handleLogOut = () => {
-     logOut().then(() => {
+    logOut().then(() => {
       alert("You Logged Out successfully");
     });
   };
 
   return (
-    <div className="bg-base-100 shadow-sm px-6">
-      <div className="navbar py-3 px-4 md:px-8 flex items-center justify-between">
+    <div className="bg-base-100 dark:bg-gray-900 dark:text-white shadow-sm px-6 transition-colors duration-300">
+      <div className="navbar  px-4 md:px-8 flex items-center justify-between">
         {/* Left: Logo */}
         <div className="flex items-center gap-2">
           <Link
@@ -32,20 +50,29 @@ const {user, logOut } = use(AuthContext);
           </Link>
         </div>
 
-        {/* Center: Nav Links (visible on large screen only) */}
+        {/* Center: Nav Links */}
         <div className="hidden lg:flex justify-center">
           <ul className="menu menu-horizontal px-1 font-medium">
-          <li><NavLink to="/">Home</NavLink></li>
-          <li><NavLink to="/allvisa">All Visas</NavLink></li>
-          <li><NavLink to="/addvisa">Add Visa</NavLink></li>
-          <li><NavLink to="/myaddedvisa">My added visas</NavLink></li>
-          <li><NavLink to="/myvisapplication">My Visa Applications</NavLink></li>
+            <li><NavLink to="/">Home</NavLink></li>
+            <li><NavLink to="/allvisa">All Visas</NavLink></li>
+            <li><NavLink to="/addvisa">Add Visa</NavLink></li>
+            <li><NavLink to="/myaddedvisa">My added visas</NavLink></li>
+            <li><NavLink to="/myvisapplication">My Visa Applications</NavLink></li>
             {user && <li><NavLink to="/updateprofile">My Profile</NavLink></li>}
           </ul>
         </div>
 
-        {/* Right: Login/Logout & Avatar */}
+        {/* Right: Theme Toggle + User */}
         <div className="flex items-center gap-3">
+          {/* Theme Toggle Button */}
+          <button
+            onClick={toggleTheme}
+            className="px-3 py-2 rounded-xl bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition"
+          >
+            {theme === "dark" ? <FaSun /> : <FaMoon />}
+          </button>
+
+          {/* User Avatar + Login/Logout */}
           <img
             className="w-8 h-8 sm:w-10 sm:h-10 rounded-full object-cover"
             src={user?.photoURL || userIcon}
@@ -54,7 +81,8 @@ const {user, logOut } = use(AuthContext);
           {user ? (
             <button
               onClick={handleLogOut}
-              className="btn btn-primary text-xs sm:text-sm px-4 py-1">
+              className="btn btn-primary text-xs sm:text-sm px-4 py-1"
+            >
               LogOut
             </button>
           ) : (
@@ -85,15 +113,15 @@ const {user, logOut } = use(AuthContext);
                   d="M4 6h16M4 12h16M4 18h16" />
               </svg>
             </button>
-           <ul
-          tabIndex={0}
-          className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52 font-medium"
-        >
-          <li><NavLink to="/">Home</NavLink></li>
-          <li><NavLink to="/allvisa">All Visas</NavLink></li>
-          <li><NavLink to="/addvisa">Add Visa</NavLink></li>
-          <li><NavLink to="/addvisa">My added visas</NavLink></li>
-          <li><NavLink to="/myvisapplication">My Visa Applications</NavLink></li>
+            <ul
+              tabIndex={0}
+              className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 dark:bg-gray-800 rounded-box w-52 font-medium"
+            >
+              <li><NavLink to="/">Home</NavLink></li>
+              <li><NavLink to="/allvisa">All Visas</NavLink></li>
+              <li><NavLink to="/addvisa">Add Visa</NavLink></li>
+              <li><NavLink to="/myaddedvisa">My added visas</NavLink></li>
+              <li><NavLink to="/myvisapplication">My Visa Applications</NavLink></li>
               {user && <li><NavLink to="/updateprofile">My Profile</NavLink></li>}
               {!user && <li><NavLink to="/login">Login</NavLink></li>}
             </ul>

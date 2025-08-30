@@ -9,7 +9,7 @@ const Mainlayout = () => {
       <Navbar />
 
       {/* Page content */}
-      <div className="min-h-[calc(100vh-232px)] py-12">
+      <div className="min-h-[calc(100vh-232px)] py-3">
         <Outlet /> {/* Nested routes render here */}
       </div>
 
