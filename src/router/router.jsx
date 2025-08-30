@@ -33,7 +33,7 @@ export const router = createBrowserRouter ([
       },
       {
         path: "/allvisa",
-        element: <PrivateRoute><Allvisas></Allvisas></PrivateRoute>,
+        element: <Allvisas></Allvisas>,
         loader: ()=> fetch('http://localhost:5000/allvisa')
     },
     {

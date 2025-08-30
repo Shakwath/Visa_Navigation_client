@@ -8,7 +8,8 @@ const Footer = () => {
         
         {/* Column 1 */}
         <div>
-          <h3 className="text-gray-400 font-bold mb-4">VISA NAVIGATOR</h3>
+          <h3 
+          className= "text-gray-400 font-bold mb-4">VISA NAVIGATOR</h3>
           <ul>
             <li className="mb-2 hover:text-white cursor-pointer">Home</li>
             <li className="mb-2 hover:text-white cursor-pointer">All Visas</li>
