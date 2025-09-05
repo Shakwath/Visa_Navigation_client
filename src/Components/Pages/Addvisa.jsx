@@ -18,6 +18,7 @@ const documentOptions = ["Valid passport", "Visa application form", "Recent pass
 
 const Addvisa = () => {
   const { user } = useContext(AuthContext); // get logged-in user
+
   const initialState = visaFieldConfig.reduce((acc, field) => ({ ...acc, [field.name]: "" }), {});
   initialState.requiredDocuments = [];
 
@@ -74,12 +75,14 @@ const Addvisa = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 p-4">
-      <div className="w-full max-w-2xl bg-white rounded-3xl shadow-2xl p-8">
+      <div className="w-full max-w-4xl bg-white rounded-3xl shadow-2xl p-8">
         <h2 className="text-3xl font-bold text-center mb-6">Add Visa</h2>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {visaFieldConfig.map((field) => (
-            <div className="mb-5" key={field.name}>
-              <label className="block text-sm font-medium text-gray-700 mb-2">{field.label}:</label>
+            <div className="mb-2" key={field.name}>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                {field.label}:
+              </label>
               {field.type === "textarea" ? (
                 <textarea
                   name={field.name}
@@ -87,7 +90,7 @@ const Addvisa = () => {
                   onChange={handleChange}
                   rows="3"
                   placeholder={field.placeholder || ""}
-                  className="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-xl shadow-sm focus:ring-purple-500 focus:border-purple-500 transition"
+                  className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-xl shadow-sm focus:ring-purple-500 focus:border-purple-500 transition"
                   required
                 />
               ) : field.type === "select" ? (
@@ -95,7 +98,7 @@ const Addvisa = () => {
                   name={field.name}
                   value={visaData[field.name]}
                   onChange={handleChange}
-                  className="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-xl shadow-sm focus:ring-purple-500 focus:border-purple-500 transition"
+                  className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-xl shadow-sm focus:ring-purple-500 focus:border-purple-500 transition"
                   required
                 >
                   <option value="">Select {field.label}</option>
@@ -112,7 +115,7 @@ const Addvisa = () => {
                   value={visaData[field.name]}
                   onChange={handleChange}
                   placeholder={field.placeholder || ""}
-                  className="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-xl shadow-sm focus:ring-purple-500 focus:border-purple-500 transition"
+                  className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-xl shadow-sm focus:ring-purple-500 focus:border-purple-500 transition"
                   required
                 />
               )}
@@ -126,8 +129,11 @@ const Addvisa = () => {
             </div>
           ))}
 
-          <div className="mb-5">
-            <label className="block text-sm font-medium text-gray-700 mb-2">Required Documents:</label>
+          {/* Required Documents - Full Width */}
+          <div className="md:col-span-2 mb-4">
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Required Documents:
+            </label>
             <div className="flex flex-wrap gap-3">
               {documentOptions.map((doc) => (
                 <label key={doc} className="inline-flex items-center">
@@ -145,15 +151,20 @@ const Addvisa = () => {
             </div>
           </div>
 
-          <button
-            type="submit"
-            className="w-full bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3 px-4 rounded-2xl shadow-lg transition duration-300 ease-in-out"
-          >
-            Add Visa
-          </button>
+          {/* Submit button full width */}
+          <div className="md:col-span-2">
+            <button
+              type="submit"
+              className="w-full bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3 px-4 rounded-2xl shadow-lg transition duration-300 ease-in-out"
+            >
+              Add Visa
+            </button>
+          </div>
 
           {message && (
-            <div className="mt-4 text-center text-green-600 font-medium text-lg">{message}</div>
+            <div className="md:col-span-2 mt-4 text-center text-green-600 font-medium text-lg">
+              {message}
+            </div>
           )}
         </form>
       </div>

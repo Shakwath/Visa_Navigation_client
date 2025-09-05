@@ -51,16 +51,19 @@ const MyAddedVisas = () => {
   };
 
   return (
-    <div className="max-w-5xl mx-auto p-6">
-      <h2 className="text-2xl font-bold mb-6">My Added Visas</h2>
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div className="max-w-7xl mx-auto p-4 sm:p-6">
+      <h2 className="text-2xl sm:text-3xl font-bold mb-6 text-center">My Added Visas</h2>
+      
+      {/* Responsive Grid */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
         {visas.map(visa => (
-          <div key={visa._id} className="card bg-white shadow-xl p-4 rounded-xl">
+          <div key={visa._id} className="bg-white shadow-xl p-4 rounded-xl flex flex-col">
             <img
               src={visa.countryImage || "https://via.placeholder.com/400x200?text=No+Image"}
               alt={visa.countryName || "Visa Country"}
-              className="h-40 w-full object-cover rounded-lg mb-3"/>
-            <h3 className="text-xl font-semibold">{visa.countryName || "Unknown Country"}</h3>
+              className="h-40 w-full object-cover rounded-lg mb-3"
+            />
+            <h3 className="text-lg sm:text-xl font-semibold">{visa.countryName || "Unknown Country"}</h3>
             <p><strong>Visa Type:</strong> {visa.visaType}</p>
             <p><strong>Processing Time:</strong> {visa.processingTime}</p>
             <p><strong>Fee:</strong> ${visa.fee}</p>
@@ -77,9 +80,11 @@ const MyAddedVisas = () => {
 
       {/* Modal */}
       {editingVisa && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-          <div className="bg-white p-6 rounded-xl shadow-xl w-96">
-            <h3 className="text-lg font-semibold mb-4">Update Visa for {editingVisa.countryName}</h3>
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 px-4">
+          <div className="bg-white p-6 rounded-xl shadow-xl w-full max-w-md sm:max-w-lg">
+            <h3 className="text-lg sm:text-xl font-semibold mb-4">
+              Update Visa for {editingVisa.countryName}
+            </h3>
             <form onSubmit={handleUpdate} className="space-y-3">
               <input name="countryName" defaultValue={editingVisa.countryName} className="input input-bordered w-full" required />
               <input name="countryImage" placeholder="Enter Image URL" defaultValue={editingVisa.countryImage} className="input input-bordered w-full" required />
@@ -88,9 +93,10 @@ const MyAddedVisas = () => {
               <input name="fee" placeholder="Enter Fee" defaultValue={editingVisa.fee} className="input input-bordered w-full" required />
               <input name="validity" placeholder="Validity" defaultValue={editingVisa.validity} className="input input-bordered w-full" required />
               <input name="applicationMethod" placeholder="Enter applicationMethod" defaultValue={editingVisa.applicationMethod} className="input input-bordered w-full" required />
-              <div className="flex gap-2 justify-end">
-                <button type="button" onClick={() => setEditingVisa(null)} className="btn btn-outline btn-error">Cancel</button>
-                <button type="submit" className="btn btn-outline btn-success">Save Changes</button>
+              
+              <div className="flex flex-col sm:flex-row gap-2 justify-end">
+                <button type="button" onClick={() => setEditingVisa(null)} className="btn btn-outline btn-error w-full sm:w-auto">Cancel</button>
+                <button type="submit" className="btn btn-outline btn-success w-full sm:w-auto">Save Changes</button>
               </div>
             </form>
           </div>

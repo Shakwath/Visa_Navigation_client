@@ -33,8 +33,8 @@ const Navbar = () => {
   };
 
   return (
-    <div className="bg-base-100 dark:bg-gray-900 dark:text-white shadow-sm px-6 transition-colors duration-300">
-      <div className="navbar  px-4 md:px-8 flex items-center justify-between">
+    <div className="bg-base-100 dark:bg-gray-900 dark:text-white shadow-sm w-full transition-colors duration-300">
+      <div className="navbar px-3 sm:px-4 md:px-8 flex items-center justify-between max-w-7xl mx-auto">
         {/* Left: Logo */}
         <div className="flex items-center gap-2">
           <Link
@@ -46,13 +46,13 @@ const Navbar = () => {
               alt="logo"
               className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10"
             />
-            <span className="sm:inline">Visa_Navigation</span>
+            <span className="hidden sm:inline">Visa_Navigation</span>
           </Link>
         </div>
 
-        {/* Center: Nav Links */}
+        {/* Center: Nav Links (hidden on mobile) */}
         <div className="hidden lg:flex justify-center">
-          <ul className="menu menu-horizontal px-1 font-medium">
+          <ul className="menu menu-horizontal px-1 font-medium text-sm md:text-base">
             <li><NavLink to="/">Home</NavLink></li>
             <li><NavLink to="/allvisa">All Visas</NavLink></li>
             <li><NavLink to="/addvisa">Add Visa</NavLink></li>
@@ -62,26 +62,28 @@ const Navbar = () => {
           </ul>
         </div>
 
-        {/* Right: Theme Toggle + User */}
-        <div className="flex items-center gap-3">
-          {/* Theme Toggle Button */}
+        {/* Right: Theme Toggle + User + Auth */}
+        <div className="flex items-center gap-2 sm:gap-3">
+          {/* Theme Toggle */}
           <button
             onClick={toggleTheme}
-            className="px-3 py-2 rounded-xl bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition"
+            className="px-2 sm:px-3 py-2 rounded-xl bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition"
           >
             {theme === "dark" ? <FaSun /> : <FaMoon />}
           </button>
 
-          {/* User Avatar + Login/Logout */}
+          {/* User Avatar */}
           <img
-            className="w-8 h-8 sm:w-10 sm:h-10 rounded-full object-cover"
+            className="w-7 h-7 sm:w-9 sm:h-9 md:w-10 md:h-10 rounded-full object-cover"
             src={user?.photoURL || userIcon}
             alt="User"
           />
+
+          {/* Auth Buttons */}
           {user ? (
             <button
               onClick={handleLogOut}
-              className="btn btn-primary text-xs sm:text-sm px-4 py-1"
+              className="btn btn-primary text-xs sm:text-sm px-3 sm:px-4 py-1"
             >
               LogOut
             </button>
@@ -99,7 +101,7 @@ const Navbar = () => {
             </Link>
           )}
 
-          {/* Mobile Dropdown Menu */}
+          {/* Mobile Dropdown */}
           <div className="dropdown dropdown-end lg:hidden">
             <button tabIndex={0} className="btn btn-ghost btn-sm">
               <svg
@@ -115,7 +117,7 @@ const Navbar = () => {
             </button>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 dark:bg-gray-800 rounded-box w-52 font-medium"
+              className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 dark:bg-gray-800 rounded-box w-48 sm:w-56 font-medium text-sm"
             >
               <li><NavLink to="/">Home</NavLink></li>
               <li><NavLink to="/allvisa">All Visas</NavLink></li>
