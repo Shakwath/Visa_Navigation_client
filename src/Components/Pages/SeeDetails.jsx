@@ -30,7 +30,7 @@ const SeeDetails = () => {
 
 
     // send data to backend
-    const res = await fetch("http://localhost:5000/applications", {
+    const res = await fetch("https://visa-navigation-server.vercel.app/applications", {
       method: "POST",
       headers: { 
         "Content-Type": "application/json" },

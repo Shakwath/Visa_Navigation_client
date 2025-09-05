@@ -8,7 +8,7 @@ const LatestVisas = () => {
 
   const fetchVisas = async () => {
     try {
-      const res = await fetch("http://localhost:5000/latestvisas");
+      const res = await fetch("https://visa-navigation-server.vercel.app/latestvisas");
       const data = await res.json();
       setVisas(data);
     } catch (err) {

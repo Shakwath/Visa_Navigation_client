@@ -34,12 +34,12 @@ export const router = createBrowserRouter ([
       {
         path: "/allvisa",
         element: <Allvisas></Allvisas>,
-        loader: ()=> fetch('http://localhost:5000/allvisa')
+        loader: ()=> fetch('https://visa-navigation-server.vercel.app/allvisa')
     },
     {
         path: "/visadetails/:id",
         element: <PrivateRoute><SeeDetails></SeeDetails></PrivateRoute>,
-        loader: ({params})=> fetch(`http://localhost:5000/visadetails/${params.id}`)
+        loader: ({params})=> fetch(`https://visa-navigation-server.vercel.app/visadetails/${params.id}`)
     },
       {
         path: "/myvisapplication",

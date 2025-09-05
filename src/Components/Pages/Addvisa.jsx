@@ -52,7 +52,7 @@ const Addvisa = () => {
 
     const finalVisa = { ...visaData, email: user.email }; // attach user's email
 
-    fetch("http://localhost:5000/allvisa", {
+    fetch("https://visa-navigation-server.vercel.app/allvisa", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(finalVisa),

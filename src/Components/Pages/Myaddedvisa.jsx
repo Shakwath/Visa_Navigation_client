@@ -8,7 +8,7 @@ const MyAddedVisas = () => {
 
   useEffect(() => {
     if (user?.email) {
-      fetch(`http://localhost:5000/myvisas/${user.email}`)
+      fetch(`https://visa-navigation-server.vercel.app/myvisas/${user.email}`)
         .then(res => res.json())
         .then(data => setVisas(data))
         .catch(err => console.error("Error fetching visas:", err));
@@ -18,7 +18,7 @@ const MyAddedVisas = () => {
   // Delete
   const handleDelete = async (id) => {
     if (!window.confirm("Are you sure you want to delete this visa?")) return;
-    const res = await fetch(`http://localhost:5000/myvisas/${id}`, { method: "DELETE" });
+    const res = await fetch(`https://visa-navigation-server.vercel.app/myvisas/${id}`, { method: "DELETE" });
     if (res.ok) {
       setVisas(visas.filter(v => v._id !== id));
     }
@@ -38,7 +38,7 @@ const MyAddedVisas = () => {
       applicationMethod: form.applicationMethod.value,
     };
 
-    const res = await fetch(`http://localhost:5000/myvisas/${editingVisa._id}`, {
+    const res = await fetch(`https://visa-navigation-server.vercel.app/myvisas/${editingVisa._id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(updatedVisa),
